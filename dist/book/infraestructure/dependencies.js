@@ -1,9 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addBookController = exports.addBookUseCase = exports.pgsqlBookRepository = void 0;
+exports.listInactiveBooksController = exports.listInactiveBooksUseCase = exports.listAllBooksController = exports.listAllBooksUseCase = exports.addBookController = exports.addBookUseCase = exports.pgsqlBookRepository = void 0;
 const addBookUseCase_1 = require("../application/addBookUseCase");
 const pgsqlBookRepository_1 = require("./pgsqlBookRepository");
 const addBookController_1 = require("./controller/addBookController");
+const listAllBooksUseCase_1 = require("../application/listAllBooksUseCase");
+const listAllBooksController_1 = require("./controller/listAllBooksController");
+const listInactiveBooksUseCase_1 = require("../application/listInactiveBooksUseCase");
+const listInactiveBooksController_1 = require("./controller/listInactiveBooksController");
 exports.pgsqlBookRepository = new pgsqlBookRepository_1.PgsqlBookRepository();
 exports.addBookUseCase = new addBookUseCase_1.AddBookUseCase(exports.pgsqlBookRepository);
 exports.addBookController = new addBookController_1.AddBookController(exports.addBookUseCase);
+exports.listAllBooksUseCase = new listAllBooksUseCase_1.ListAllBooksUseCase(exports.pgsqlBookRepository);
+exports.listAllBooksController = new listAllBooksController_1.ListAllBooksController(exports.listAllBooksUseCase);
+exports.listInactiveBooksUseCase = new listInactiveBooksUseCase_1.ListInactiveBooksUseCase(exports.pgsqlBookRepository);
+exports.listInactiveBooksController = new listInactiveBooksController_1.ListInactiveBooksController(exports.listInactiveBooksUseCase);

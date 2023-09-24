@@ -9,22 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddBookUseCase = void 0;
-class AddBookUseCase {
+exports.ListInactiveBooksUseCase = void 0;
+class ListInactiveBooksUseCase {
     constructor(bookRepository) {
         this.bookRepository = bookRepository;
     }
-    run(title, author, code, status, in_use) {
+    run() {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const createdBook = yield this.bookRepository.addBook(title, author, code, status, in_use);
-                return createdBook;
-            }
-            catch (error) {
-                console.error("Error in addBookUseCase:", error);
-                return null;
-            }
+            return yield this.bookRepository.listInactiveBooks();
         });
     }
 }
-exports.AddBookUseCase = AddBookUseCase;
+exports.ListInactiveBooksUseCase = ListInactiveBooksUseCase;

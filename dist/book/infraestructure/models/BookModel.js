@@ -22,10 +22,34 @@ __decorate([
         allowNull: false
     })
 ], BookModel.prototype, "title", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING(128),
+        allowNull: false
+    })
+], BookModel.prototype, "author", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING(128),
+        allowNull: false
+    })
+], BookModel.prototype, "code", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING(128),
+        allowNull: false
+    })
+], BookModel.prototype, "status", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING(128),
+        allowNull: false
+    })
+], BookModel.prototype, "in_use", void 0);
 BookModel = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: 'books',
-        timestamps: false // Si no deseas los campos createdAt y updatedAt. Ajusta según tus necesidades.
+        timestamps: true
     })
 ], BookModel);
 exports.default = BookModel;

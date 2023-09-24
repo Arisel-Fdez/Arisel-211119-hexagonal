@@ -9,22 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddBookUseCase = void 0;
-class AddBookUseCase {
-    constructor(bookRepository) {
-        this.bookRepository = bookRepository;
+exports.ListAllBooksController = void 0;
+class ListAllBooksController {
+    constructor(listAllBooksUseCase) {
+        this.listAllBooksUseCase = listAllBooksUseCase;
     }
-    run(title, author, code, status, in_use) {
+    run(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const createdBook = yield this.bookRepository.addBook(title, author, code, status, in_use);
-                return createdBook;
+                let books = yield this.listAllBooksUseCase.run();
+                res.status(200).send({
+                    status: "success",
+                    data: books,
+                    message: "Listado de libros recuperado exitosamente"
+                });
             }
             catch (error) {
-                console.error("Error in addBookUseCase:", error);
-                return null;
+                console.error("Error in ListAllBooksController:", error);
+                res.status(500).send({
+                    status: "error",
+                    message: "Error interno del servidor"
+                });
             }
         });
     }
 }
-exports.AddBookUseCase = AddBookUseCase;
+exports.ListAllBooksController = ListAllBooksController;

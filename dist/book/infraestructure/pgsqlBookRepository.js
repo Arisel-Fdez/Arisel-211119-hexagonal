@@ -16,15 +16,40 @@ exports.PgsqlBookRepository = void 0;
 const book_1 = require("../domain/book");
 const BookModel_1 = __importDefault(require("./models/BookModel"));
 class PgsqlBookRepository {
-    addBook(title) {
+    addBook(title, author, code, status, in_use) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const createdBook = yield BookModel_1.default.create({ title });
-                return new book_1.Book(createdBook.id, createdBook.title);
+                const createdBook = yield BookModel_1.default.create({ title, author, code, status, in_use });
+                return new book_1.Book(createdBook.id, createdBook.title, createdBook.author, createdBook.code, createdBook.status, createdBook.in_use);
             }
             catch (error) {
-                console.error("Error adding book:", error);
+                console.error("Error in PgsqlBookRepository:", error);
                 return null;
+            }
+        });
+    }
+    listAllBooks() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const books = yield BookModel_1.default.findAll();
+                return books.map(book => new book_1.Book(book.id, book.title, book.author, book.code, book.status, book.in_use));
+            }
+            catch (error) {
+                console.error("Error in PgsqlBookRepository:", error);
+                return [];
+            }
+        });
+    }
+    listInactiveBooks() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                // Suponiendo que los libros inactivos tienen el valor de "status" como "Inactivo"
+                const inactiveBooks = yield BookModel_1.default.findAll({ where: { status: "Inactivo" } });
+                return inactiveBooks.map(book => new book_1.Book(book.id, book.title, book.author, book.code, book.status, book.in_use));
+            }
+            catch (error) {
+                console.error("Error in PgsqlBookRepository:", error);
+                return [];
             }
         });
     }
