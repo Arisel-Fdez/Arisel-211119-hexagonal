@@ -19,10 +19,18 @@ class AuthUseCase {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield this.authRepository.verifyUser(email, password);
             if (user) {
-                // En este punto, ya hemos verificado el email y la contraseña.
-                return (0, jwt_1.generateToken)({ email: user.email }); // No necesitas userId aquí a menos que también lo agregues a la clase Auth.
+                const token = (0, jwt_1.generateToken)({ email: user.email });
+                return {
+                    status: 'success',
+                    token
+                };
             }
-            return null;
+            else {
+                return {
+                    status: 'error',
+                    message: 'Credenciales inválidas'
+                };
+            }
         });
     }
 }

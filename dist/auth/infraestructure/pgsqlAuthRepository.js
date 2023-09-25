@@ -21,7 +21,7 @@ class PgsqlAuthRepository {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield userModel_1.default.findOne({ where: { email: email } });
             if (user && (yield (0, password_1.comparePasswords)(password, user.password))) {
-                return new auth_1.Auth(user.email, password); // Devuelve un nuevo objeto Auth
+                return new auth_1.Auth(user.email, user.password);
             }
             return null;
         });
