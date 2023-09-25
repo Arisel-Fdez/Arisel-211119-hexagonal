@@ -15,3 +15,6 @@ exports.usersRouter.get("/", dependencies_1.listAllUsersController.run.bind(depe
 exports.usersRouter.delete("/delete/:id", dependencies_1.deleteUserController.run.bind(dependencies_1.deleteUserController));
 // Ruta para obtener un usuario por su número telefónico
 exports.usersRouter.get("/phone/:phone", dependencies_1.getUserByPhoneController.run.bind(dependencies_1.getUserByPhoneController));
+exports.usersRouter.get("/inactive", dependencies_1.getInactiveUsersController.run.bind(dependencies_1.getInactiveUsersController));
+exports.usersRouter.put("/update", dependencies_1.updateUserController.run.bind(dependencies_1.updateUserController));
+exports.usersRouter.put("/update-password", dependencies_1.updatePasswordController.run.bind(dependencies_1.updatePasswordController));

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUserController = exports.deletedUsersUseCase = exports.getUserByPhoneController = exports.getUserByPhoneUseCase = exports.listAllUsersController = exports.listAllUsersUseCase = exports.addUsersController = exports.addUsersUseCase = exports.pgsqlUsersRepository = void 0;
+exports.updateUserController = exports.updateUserUseCase = exports.updatePasswordController = exports.updatePasswordUseCase = exports.getInactiveUsersController = exports.getInactiveUsersUseCase = exports.deleteUserController = exports.deletedUsersUseCase = exports.getUserByPhoneController = exports.getUserByPhoneUseCase = exports.listAllUsersController = exports.listAllUsersUseCase = exports.addUsersController = exports.addUsersUseCase = exports.pgsqlUsersRepository = void 0;
 const pgsqlUsersRepository_1 = require("./pgsqlUsersRepository");
 const addUsersUseCase_1 = require("../application/addUsersUseCase");
 const addUsersController_1 = require("./controller/addUsersController");
@@ -10,6 +10,12 @@ const getUserByPhoneController_1 = require("./controller/getUserByPhoneControlle
 const getUserByPhoneUseCase_1 = require("../application/getUserByPhoneUseCase");
 const deleteUsersUseCase_1 = require("../application/deleteUsersUseCase");
 const deleteUsersController_1 = require("./controller/deleteUsersController");
+const getInactiveUsersUseCase_1 = require("../application/getInactiveUsersUseCase");
+const getInactiveUsersController_1 = require("./controller/getInactiveUsersController");
+const updatePasswordUseCase_1 = require("../application/updatePasswordUseCase");
+const updatePasswordController_1 = require("./controller/updatePasswordController");
+const updateUserUseCase_1 = require("../application/updateUserUseCase");
+const updateUserController_1 = require("./controller/updateUserController");
 exports.pgsqlUsersRepository = new pgsqlUsersRepository_1.PgsqlUsersRepository();
 exports.addUsersUseCase = new addUsersUseCase_1.AddUsersUseCase(exports.pgsqlUsersRepository);
 exports.addUsersController = new addUsersController_1.AddUsersController(exports.addUsersUseCase);
@@ -19,3 +25,9 @@ exports.getUserByPhoneUseCase = new getUserByPhoneUseCase_1.GetUserByPhoneUseCas
 exports.getUserByPhoneController = new getUserByPhoneController_1.GetUserByPhoneController(exports.getUserByPhoneUseCase);
 exports.deletedUsersUseCase = new deleteUsersUseCase_1.DeleteUserUseCase(exports.pgsqlUsersRepository);
 exports.deleteUserController = new deleteUsersController_1.DeleteUserController(exports.deletedUsersUseCase);
+exports.getInactiveUsersUseCase = new getInactiveUsersUseCase_1.GetInactiveUsersUseCase(exports.pgsqlUsersRepository);
+exports.getInactiveUsersController = new getInactiveUsersController_1.GetInactiveUsersController(exports.getInactiveUsersUseCase);
+exports.updatePasswordUseCase = new updatePasswordUseCase_1.UpdatePasswordUseCase(exports.pgsqlUsersRepository);
+exports.updatePasswordController = new updatePasswordController_1.UpdatePasswordController(exports.updatePasswordUseCase);
+exports.updateUserUseCase = new updateUserUseCase_1.UpdateUserUseCase(exports.pgsqlUsersRepository);
+exports.updateUserController = new updateUserController_1.UpdateUserController(exports.updateUserUseCase);

@@ -17,11 +17,13 @@ const signale_1 = require("signale");
 const sequelize_1 = require("./database/sequelize");
 const bookRouter_1 = require("./book/infraestructure/bookRouter");
 const usersRouter_1 = require("./users/infraestructure/usersRouter");
+const authRouter_1 = require("./auth/infraestructure/authRouter");
 const app = (0, express_1.default)();
 const signale = new signale_1.Signale();
 app.use(express_1.default.json());
 app.use('/books', bookRouter_1.bookRouter);
 app.use('/user', usersRouter_1.usersRouter);
+app.use('/auth', authRouter_1.authRouter);
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         try {

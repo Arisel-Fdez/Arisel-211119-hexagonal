@@ -3,6 +3,7 @@ import { Signale } from 'signale';
 import { initializeDatabase } from './database/sequelize'; 
 import { bookRouter } from './book/infraestructure/bookRouter';
 import { usersRouter } from './users/infraestructure/usersRouter';
+import { authRouter } from './auth/infraestructure/authRouter';
 
 
 
@@ -13,6 +14,7 @@ const signale = new Signale();
 app.use(express.json());
 app.use('/books', bookRouter);
 app.use('/user',usersRouter);
+app.use('/auth', authRouter);
 
 async function startServer() {
     try {
