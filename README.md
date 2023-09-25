@@ -1,12 +1,12 @@
 # Arisel-211119-hexagonal
 
-#Para ejecutar debe copilar primero
+# Para ejecutar debe copilar primero
 
- #tsc --w
+ # tsc --w
 
  y ejecutar desde Packetjson en el comando start
 
- #"start": "tsc && node dist/app.js
+ # "start": "tsc && node dist/app.js
 
 Usuarios:
 Listar todos los usuarios: El administrador del sistema puede ver una lista completa de todos los usuarios registrados en la plataforma.
