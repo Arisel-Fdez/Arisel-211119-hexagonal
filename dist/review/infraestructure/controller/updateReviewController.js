@@ -9,26 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogoutUseCase = void 0;
-class LogoutUseCase {
-    constructor(authRepository) {
-        this.authRepository = authRepository;
+exports.UpdateReviewController = void 0;
+const review_1 = require("../../domain/review");
+class UpdateReviewController {
+    constructor(updateReviewUseCase) {
+        this.updateReviewUseCase = updateReviewUseCase;
     }
-    logout(email) {
+    run(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { id, userId, bookId, status } = req.body;
+            const reviewToUpdate = new review_1.Review(id, userId, bookId, status);
             try {
-                yield this.authRepository.setUserStatus(email, 'Inactivo');
-                return {
-                    status: 'success'
-                };
+                const updatedReview = yield this.updateReviewUseCase.run(reviewToUpdate);
+                if (updatedReview) {
+                    res.status(200).send(updatedReview);
+                }
+                else {
+                    res.status(404).send({ message: "Review not found" });
+                }
             }
             catch (error) {
-                return {
-                    status: 'error',
-                    message: 'Error al cerrar la sesión'
-                };
+                console.error("Error in UpdateReviewController:", error);
+                res.status(500).send({ message: "Internal Server Error" });
             }
         });
     }
 }
-exports.LogoutUseCase = LogoutUseCase;
+exports.UpdateReviewController = UpdateReviewController;

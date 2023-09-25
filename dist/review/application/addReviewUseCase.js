@@ -9,29 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthUseCase = void 0;
-const jwt_1 = require("../utils/jwt");
-class AuthUseCase {
-    constructor(authRepository) {
-        this.authRepository = authRepository;
+exports.AddReviewUseCase = void 0;
+class AddReviewUseCase {
+    constructor(reviewRepository) {
+        this.reviewRepository = reviewRepository;
     }
-    run(email, password) {
+    run(userId, bookId, status) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.authRepository.verifyUser(email, password);
-            if (user) {
-                const token = (0, jwt_1.generateToken)({ email: user.email });
-                return {
-                    status: 'success',
-                    token
-                };
+            try {
+                const newReview = yield this.reviewRepository.addReview(userId, bookId, status);
+                return newReview;
             }
-            else {
-                return {
-                    status: 'error',
-                    message: 'Credenciales inválidas'
-                };
+            catch (error) {
+                console.error("Error in AddReviewUseCase:", error);
+                return null;
             }
         });
     }
 }
-exports.AuthUseCase = AuthUseCase;
+exports.AddReviewUseCase = AddReviewUseCase;

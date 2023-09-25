@@ -9,29 +9,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthUseCase = void 0;
-const jwt_1 = require("../utils/jwt");
-class AuthUseCase {
-    constructor(authRepository) {
-        this.authRepository = authRepository;
+exports.AddReviewController = void 0;
+class AddReviewController {
+    constructor(addReviewUseCase) {
+        this.addReviewUseCase = addReviewUseCase;
     }
-    run(email, password) {
+    run(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.authRepository.verifyUser(email, password);
-            if (user) {
-                const token = (0, jwt_1.generateToken)({ email: user.email });
-                return {
-                    status: 'success',
-                    token
-                };
+            const { userId, bookId, status } = req.body;
+            try {
+                const newReview = yield this.addReviewUseCase.run(userId, bookId, status);
+                if (newReview) {
+                    res.status(201).send(newReview);
+                }
+                else {
+                    res.status(400).send({ message: "Error creating review" });
+                }
             }
-            else {
-                return {
-                    status: 'error',
-                    message: 'Credenciales inválidas'
-                };
+            catch (error) {
+                console.error("Error in AddReviewController:", error);
+                res.status(500).send({ message: "Internal Server Error" });
             }
         });
     }
 }
-exports.AuthUseCase = AuthUseCase;
+exports.AddReviewController = AddReviewController;

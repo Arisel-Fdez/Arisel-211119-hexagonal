@@ -9,26 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogoutController = void 0;
-class LogoutController {
-    constructor(logoutUseCase) {
-        this.logoutUseCase = logoutUseCase;
+exports.DeleteReviewController = void 0;
+class DeleteReviewController {
+    constructor(deleteReviewUseCase) {
+        this.deleteReviewUseCase = deleteReviewUseCase;
     }
-    handle(req, res) {
+    run(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!req.user || !req.user.email) {
-                return res.status(400).send({ status: 'error', message: 'Información de usuario no encontrada' });
+            try {
+                const isDeleted = yield this.deleteReviewUseCase.execute(Number(req.params.id));
+                if (isDeleted) {
+                    res.status(200).send({ message: "Review successfully deleted" });
+                }
+                else {
+                    res.status(404).send({ message: "Review not found" });
+                }
             }
-            const email = req.user.email;
-            const result = yield this.logoutUseCase.logout(email);
-            // Basado en el estado, responde con el código de estado adecuado
-            if (result.status === 'success') {
-                res.status(200).send({ status: 'success', message: 'Sesión cerrada exitosamente' });
-            }
-            else {
-                res.status(500).send(result);
+            catch (error) {
+                console.error("Error in DeleteReviewController:", error);
+                res.status(500).send({ message: "Internal Server Error" });
             }
         });
     }
 }
-exports.LogoutController = LogoutController;
+exports.DeleteReviewController = DeleteReviewController;

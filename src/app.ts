@@ -4,6 +4,7 @@ import { initializeDatabase } from './database/sequelize';
 import { bookRouter } from './book/infraestructure/bookRouter';
 import { usersRouter } from './users/infraestructure/usersRouter';
 import { authRouter } from './auth/infraestructure/authRouter';
+import { reviewsRouter } from './review/infraestructure/reviewRouter';
 
 
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/books', bookRouter);
 app.use('/user',usersRouter);
 app.use('/auth', authRouter);
+app.use('/review',reviewsRouter);
 
 async function startServer() {
     try {
