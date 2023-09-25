@@ -1,11 +1,17 @@
 import { Book } from "./book";
 
 export interface BookRepository {
-    addBook(title: string, author: string, code: number, status: string, in_use: boolean): Promise<Book | null>;
+    addBook(title: string, author: string, code: string, url: string, status: string): Promise<Book | null>;
 
     listAllBooks(): Promise<Book[]>; // Devuelve una lista de libros
 
     listInactiveBooks(): Promise<Book[]>; // Devuelve una lista de libros inactivos
+    
+    getBookByCode(code: string): Promise<Book | null>;
+    
+    updateBook(id: number, title: string, author: string, code: string, url:string, status: string): Promise<Book | null>;
+    
+    deleteBook(id: number): Promise<boolean>;
 
-    // Puedes agregar otros métodos aquí conforme los necesites
+    checkBookAvailability(id: number): Promise<string>;
 }

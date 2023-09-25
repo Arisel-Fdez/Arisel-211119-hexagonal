@@ -1,14 +1,18 @@
 import express from 'express';
 import { Signale } from 'signale';
-
+import { initializeDatabase } from './database/sequelize'; 
 import { bookRouter } from './book/infraestructure/bookRouter';
-import { initializeDatabase } from './database/sequelize';  // Asegúrate de cambiar 'path-to-sequelize-file' a la ruta correcta donde está tu archivo sequelize.ts
+import { usersRouter } from './users/infraestructure/usersRouter';
+
+
+
 
 const app = express();
 const signale = new Signale();
 
 app.use(express.json());
 app.use('/books', bookRouter);
+app.use('/user',usersRouter);
 
 async function startServer() {
     try {

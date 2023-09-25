@@ -17,8 +17,8 @@ class AddBookController {
     run(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let { title, author, code, status, in_use } = req.body;
-                let createdBook = yield this.addBookUseCase.run(title, author, code, status, in_use);
+                let { title, author, code, url, status } = req.body;
+                let createdBook = yield this.addBookUseCase.run(title, author, code, url, status);
                 if (createdBook) {
                     return res.status(201).send({
                         status: "success",
@@ -27,8 +27,8 @@ class AddBookController {
                             title: createdBook.title,
                             author: createdBook.author,
                             code: createdBook.code,
-                            status: createdBook.status,
-                            in_use: createdBook.in_use
+                            url: createdBook.url,
+                            status: createdBook.status
                         },
                         message: "El libro ha sido creado exitosamente"
                     });

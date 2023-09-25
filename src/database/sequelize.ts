@@ -2,6 +2,7 @@
 
 import { Sequelize } from 'sequelize-typescript';
 import BookModel from '../book/infraestructure/models/BookModel';
+import UserModel from '../users/infraestructure/models/userModel';
 
 export const sequelize = new Sequelize({
     dialect: 'postgres',
@@ -9,7 +10,7 @@ export const sequelize = new Sequelize({
     database: 'SOA',
     username: 'postgres',
     password: 'yeremi224',
-    models: [BookModel],
+    models: [BookModel, UserModel],
 });
 
 export async function initializeDatabase() {

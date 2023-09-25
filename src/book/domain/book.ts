@@ -3,8 +3,8 @@ export class Book {
         readonly id: number,
         readonly title: string,
         readonly author: string,
-        readonly code: number,
-        readonly status: string,
-        readonly in_use: boolean
+        readonly code: string,
+        readonly url: string,
+        readonly status: string
     ) { }
 }

@@ -39,13 +39,13 @@ __decorate([
         type: sequelize_typescript_1.DataType.STRING(128),
         allowNull: false
     })
-], BookModel.prototype, "status", void 0);
+], BookModel.prototype, "url", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING(128),
         allowNull: false
     })
-], BookModel.prototype, "in_use", void 0);
+], BookModel.prototype, "status", void 0);
 BookModel = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: 'books',

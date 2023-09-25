@@ -14,10 +14,10 @@ class AddBookUseCase {
     constructor(bookRepository) {
         this.bookRepository = bookRepository;
     }
-    run(title, author, code, status, in_use) {
+    run(title, author, code, url, status) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const createdBook = yield this.bookRepository.addBook(title, author, code, status, in_use);
+                const createdBook = yield this.bookRepository.addBook(title, author, code, url, status);
                 return createdBook;
             }
             catch (error) {

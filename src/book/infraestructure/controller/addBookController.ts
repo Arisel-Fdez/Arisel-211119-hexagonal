@@ -6,8 +6,8 @@ export class AddBookController {
 
     async run(req: Request, res: Response) {
         try {
-            let { title, author, code, status, in_use } = req.body;
-            let createdBook = await this.addBookUseCase.run(title, author, code, status, in_use);
+            let { title, author, code, url, status } = req.body;
+            let createdBook = await this.addBookUseCase.run(title, author, code, url, status);
 
             if (createdBook) {
                 return res.status(201).send({
@@ -17,8 +17,8 @@ export class AddBookController {
                         title: createdBook.title,
                         author: createdBook.author,
                         code: createdBook.code,
-                        status: createdBook.status,
-                        in_use: createdBook.in_use
+                        url: createdBook.url,
+                        status: createdBook.status
                     },
                     message: "El libro ha sido creado exitosamente"
                 });

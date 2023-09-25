@@ -14,12 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const signale_1 = require("signale");
+const sequelize_1 = require("./database/sequelize");
 const bookRouter_1 = require("./book/infraestructure/bookRouter");
-const sequelize_1 = require("./database/sequelize"); // Asegúrate de cambiar 'path-to-sequelize-file' a la ruta correcta donde está tu archivo sequelize.ts
+const usersRouter_1 = require("./users/infraestructure/usersRouter");
 const app = (0, express_1.default)();
 const signale = new signale_1.Signale();
 app.use(express_1.default.json());
 app.use('/books', bookRouter_1.bookRouter);
+app.use('/user', usersRouter_1.usersRouter);
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         try {

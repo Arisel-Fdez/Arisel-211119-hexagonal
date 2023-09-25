@@ -28,7 +28,13 @@ class BookModel extends Model {
         type: DataType.STRING(128),
         allowNull: false
     })
-    public code!: number;
+    public code!: string;
+    
+    @Column({
+        type: DataType.STRING(128),
+        allowNull: false
+    })
+    public url!: string;
 
     @Column({
         type: DataType.STRING(128),
@@ -36,11 +42,7 @@ class BookModel extends Model {
     })
     public status!: string;
 
-    @Column({
-        type: DataType.STRING(128),
-        allowNull: false
-    })
-    public in_use!: boolean;
+    
 
 
 }

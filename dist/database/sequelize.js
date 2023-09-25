@@ -16,13 +16,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.initializeDatabase = exports.sequelize = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const BookModel_1 = __importDefault(require("../book/infraestructure/models/BookModel"));
+const userModel_1 = __importDefault(require("../users/infraestructure/models/userModel"));
 exports.sequelize = new sequelize_typescript_1.Sequelize({
     dialect: 'postgres',
     host: 'localhost',
     database: 'SOA',
     username: 'postgres',
     password: 'yeremi224',
-    models: [BookModel_1.default],
+    models: [BookModel_1.default, userModel_1.default],
 });
 function initializeDatabase() {
     return __awaiter(this, void 0, void 0, function* () {
