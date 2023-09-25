@@ -11,4 +11,5 @@ const authRouter = express.Router();
 
 authRouter.post('/login', authController.run.bind(authController));
 
+
 export { authRouter };

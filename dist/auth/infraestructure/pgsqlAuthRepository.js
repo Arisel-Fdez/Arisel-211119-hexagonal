@@ -26,5 +26,17 @@ class PgsqlAuthRepository {
             return null;
         });
     }
+    setUserStatus(email, status) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield userModel_1.default.findOne({ where: { email: email } });
+            if (user) {
+                user.status = status;
+                yield user.save();
+            }
+            else {
+                throw new Error('Usuario no encontrado');
+            }
+        });
+    }
 }
 exports.PgsqlAuthRepository = PgsqlAuthRepository;

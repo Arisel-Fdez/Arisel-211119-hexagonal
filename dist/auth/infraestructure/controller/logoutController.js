@@ -9,34 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthUseCase = void 0;
-const jwt_1 = require("../utils/jwt");
-class AuthUseCase {
-    deactivateUserSession(email) {
-        throw new Error('Method not implemented.');
+exports.LogoutController = void 0;
+class LogoutController {
+    constructor(logoutUseCase) {
+        this.logoutUseCase = logoutUseCase;
     }
-    constructor(authRepository) {
-        this.authRepository = authRepository;
-    }
-    run(email, password) {
+    handle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.authRepository.verifyUser(email, password);
-            if (user) {
-                const token = (0, jwt_1.generateToken)({ email: user.email });
-                // Cambiar el estado del usuario a "Activo"
-                yield this.authRepository.setUserStatus(email, 'Activo');
-                return {
-                    status: 'success',
-                    token
-                };
+            if (!req.user || !req.user.email) {
+                return res.status(400).send({ status: 'error', message: 'Información de usuario no encontrada' });
+            }
+            const email = req.user.email;
+            const result = yield this.logoutUseCase.logout(email);
+            // Basado en el estado, responde con el código de estado adecuado
+            if (result.status === 'success') {
+                res.status(200).send({ status: 'success', message: 'Sesión cerrada exitosamente' });
             }
             else {
-                return {
-                    status: 'error',
-                    message: 'Credenciales inválidas'
-                };
+                res.status(500).send(result);
             }
         });
     }
 }
-exports.AuthUseCase = AuthUseCase;
+exports.LogoutController = LogoutController;

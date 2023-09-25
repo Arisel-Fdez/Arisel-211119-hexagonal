@@ -1,5 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authRepository = void 0;
+exports.logoutController = exports.logoutUseCase = exports.authController = exports.authUseCase = exports.authRepository = void 0;
 const pgsqlAuthRepository_1 = require("./pgsqlAuthRepository");
+const authUseCase_1 = require("../application/authUseCase");
+const authController_1 = require("./controller/authController");
+const logoutUseCase_1 = require("../application/logoutUseCase");
+const logoutController_1 = require("./controller/logoutController");
 exports.authRepository = new pgsqlAuthRepository_1.PgsqlAuthRepository();
+exports.authUseCase = new authUseCase_1.AuthUseCase(exports.authRepository);
+exports.authController = new authController_1.AuthController(exports.authUseCase);
+exports.logoutUseCase = new logoutUseCase_1.LogoutUseCase(exports.authRepository);
+exports.logoutController = new logoutController_1.LogoutController(exports.logoutUseCase);

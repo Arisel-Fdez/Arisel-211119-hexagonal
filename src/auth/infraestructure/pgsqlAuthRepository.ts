@@ -1,13 +1,13 @@
 import { AuthRepository } from '../domain/authRepository';
-import UserModel from '../../users/infraestructure/models/userModel'; 
-import { comparePasswords } from '../utils/password'; 
 import { Auth } from '../domain/auth';
+import UserModel from '../../users/infraestructure/models/userModel'; // Importando el modelo que ya tienes
+import { comparePasswords } from '../utils/password'; // Asegúrate de tener este helper para comparar contraseñas
 
 export class PgsqlAuthRepository implements AuthRepository {
-    async verifyUser(email: string, password: string): Promise<Auth | null> {
-        const user = await UserModel.findOne({ where: { email: email } });
-        if (user && await comparePasswords(password, user.password)) {
-            return new Auth(user.email, user.password); 
+    async verifyUser(credentials: Auth): Promise<Auth | null> {
+        const user = await UserModel.findOne({ where: { email: credentials.email } });
+        if (user && await comparePasswords(credentials.password, user.password)) {
+            return credentials;
         }
         return null;
     }
