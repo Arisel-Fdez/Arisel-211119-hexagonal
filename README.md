@@ -8,6 +8,18 @@
 
  # "start": "tsc && node dist/app.js
 
+ # Documentacion
+
+ https://documenter.getpostman.com/view/29986642/2s9YJaWiZu
+
+ https://documenter.getpostman.com/view/29986642/2s9YJaWiZv
+
+ https://documenter.getpostman.com/view/29986642/2s9YJaWiZw
+
+ https://documenter.getpostman.com/view/29986642/2s9YJaWiZx
+
+ https://documenter.getpostman.com/view/29986642/2s9YJaWiZy
+
 Usuarios:
 Listar todos los usuarios: El administrador del sistema puede ver una lista completa de todos los usuarios registrados en la plataforma.
 Listar todos los usuarios inactivos: El administrador puede ver una lista de usuarios que no han iniciado sesión o interactuado con la plataforma durante un período específico.
